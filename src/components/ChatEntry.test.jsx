@@ -15,6 +15,7 @@ describe('Wave 01: ChatEntry', () => {
     );
   });
 
+
   test('renders without crashing and shows the sender', () => {
     expect(screen.getByText(/Joe Biden/)).toBeInTheDocument();
   });
