@@ -27,6 +27,9 @@
 }
 
 #App header section {
+  display: flex;
+  justify-content: space-around;
+  color: black;
   background-color: #e0ffff;
 }
 

@@ -1,12 +1,3 @@
-/* .like {
-  color: red;
-}
-
-.notLiked {
-  color: white;
-} */
-
-
 button {
   background: none;
 	color: inherit;
@@ -107,3 +98,4 @@ button {
 .chat-entry.remote .entry-bubble:hover::before {
   background-color: #a9f6f6;
 }
+
