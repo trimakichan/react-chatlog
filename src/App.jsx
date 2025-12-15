@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import './App.css';
-import ChatLog from './components/ChatLog';
 import messages from './data/messages.json';
+import ChatLog from './components/ChatLog';
 import ColorChoice from './components/ColorChoice';
+import './App.css';
 
 const numOfLikes = (messageData) => {
   return messageData.reduce(
@@ -23,7 +23,6 @@ const App = () => {
   const handleLikeStatus = messageId => {
     setMessageData((prevMessages) => (
       prevMessages.map(message =>
-        //  Create a function and return message and move the function outside of App
         message.id === messageId
           ? { ...message, liked: !message.liked }
           : message
@@ -31,8 +30,12 @@ const App = () => {
     ));
   };
 
+  const getSenderType = (senderName) => (
+    senderName === localSender ? 'local' : 'remote'
+  );
+
   const updateMessageColor = (sender, color) => {
-    const senderType = sender === localSender ? 'local' : 'remote';
+    const senderType = getSenderType(sender);
     setMessageColors(prevColors => (
       { ...prevColors, [senderType]: color }
     ));
@@ -66,6 +69,7 @@ const App = () => {
           entries={messageData}
           onToggleMessageLike={handleLikeStatus}
           messageColors={messageColors}
+          getSenderType={getSenderType}
         />
       </main>
     </div>

@@ -11,9 +11,10 @@ const ChatEntry = ({
   liked,
   onToggleLike,
   messageColors,
+  getSenderType,
 }) => {
 
-  const senderType = sender === 'Vladimir' ? 'local' : 'remote';
+  const senderType = getSenderType && getSenderType(sender);
 
   return (
     <section className={`chat-entry ${senderType}`}>
@@ -34,6 +35,7 @@ ChatEntry.propTypes = {
   messageColors: PropTypes.shape(
     messageColorsProtoTypes
   ),
+  getSenderType: PropTypes.func,
 };
 
 export default ChatEntry;

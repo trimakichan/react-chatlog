@@ -6,7 +6,8 @@ import { messageDataProtoTypes, messageColorsProtoTypes } from './sharedPropType
 const ChatLog = ({
   entries,
   onToggleMessageLike,
-  messageColors
+  messageColors,
+  getSenderType,
 }) => {
 
   return (
@@ -21,6 +22,7 @@ const ChatLog = ({
           liked = {message.liked}
           onToggleLike={onToggleMessageLike}
           messageColors={messageColors}
+          getSenderType={getSenderType}
         />)}
     </div>
   );
@@ -34,6 +36,7 @@ ChatLog.propTypes = {
   messageColors: PropTypes.shape(
     messageColorsProtoTypes
   ),
+  getSenderType: PropTypes.func,
 };
 
 export default ChatLog;
