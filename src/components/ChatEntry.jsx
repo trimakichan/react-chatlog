@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types';
 import './ChatEntry.css';
 import TimeStamp from './TimeStamp';
+import { messageDataProtoTypes, messageColorsProtoTypes } from './sharedPropTypes';
 
-const ChatEntry = ({ id, sender, body, timeStamp, liked, onLikeToggle, messageColors}) => {
+const ChatEntry = ({
+  id,
+  sender,
+  body,
+  timeStamp,
+  liked,
+  onToggleLike,
+  messageColors,
+}) => {
 
   const senderType = sender === 'Vladimir' ? 'local' : 'remote';
 
@@ -12,7 +21,7 @@ const ChatEntry = ({ id, sender, body, timeStamp, liked, onLikeToggle, messageCo
       <section className="entry-bubble">
         <p className={messageColors?.[senderType] ?? ''}>{body}</p>
         <p className="entry-time"><TimeStamp time={timeStamp} /></p>
-        <button className="like" onClick={() => onLikeToggle(id)}>{liked ? '❤️' : '🤍'}
+        <button className="like" onClick={() => onToggleLike(id)}>{liked ? '❤️' : '🤍'}
         </button>
       </section>
     </section>
@@ -20,16 +29,11 @@ const ChatEntry = ({ id, sender, body, timeStamp, liked, onLikeToggle, messageCo
 };
 
 ChatEntry.propTypes = {
-  id: PropTypes.number.isRequired,
-  sender: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  timeStamp: PropTypes.string.isRequired,
-  liked: PropTypes.bool.isRequired,
-  onLikeToggle: PropTypes.func.isRequired,
-  messageColors: PropTypes.shape({
-    local: PropTypes.string.isRequired,
-    remote: PropTypes.string.isRequired
-  }).isRequired,
+  ...messageDataProtoTypes,
+  onToggleLike: PropTypes.func,
+  messageColors: PropTypes.shape(
+    messageColorsProtoTypes
+  ),
 };
 
 export default ChatEntry;

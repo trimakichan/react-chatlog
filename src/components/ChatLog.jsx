@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types';
 import './ChatLog.css';
 import ChatEntry from './ChatEntry';
+import { messageDataProtoTypes, messageColorsProtoTypes } from './sharedPropTypes';
 
-const ChatLog = ({ entries, onToggleMessageLike, messageColors}) => {
+const ChatLog = ({
+  entries,
+  onToggleMessageLike,
+  messageColors
+}) => {
 
   return (
     <div className='chat-log'>
@@ -14,7 +19,7 @@ const ChatLog = ({ entries, onToggleMessageLike, messageColors}) => {
           body={message.body}
           timeStamp={message.timeStamp}
           liked = {message.liked}
-          onLikeToggle={onToggleMessageLike}
+          onToggleLike={onToggleMessageLike}
           messageColors={messageColors}
         />)}
     </div>
@@ -23,17 +28,12 @@ const ChatLog = ({ entries, onToggleMessageLike, messageColors}) => {
 
 ChatLog.propTypes = {
   entries: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    sender: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    timeStamp: PropTypes.string.isRequired,
-    liked: PropTypes.bool.isRequired
+    ...messageDataProtoTypes
   })).isRequired,
-  onToggleMessageLike: PropTypes.func.isRequired,
-  messageColors: PropTypes.shape({
-    local: PropTypes.string.isRequired,
-    remote: PropTypes.string.isRequired
-  }).isRequired,
+  onToggleMessageLike: PropTypes.func,
+  messageColors: PropTypes.shape(
+    messageColorsProtoTypes
+  ),
 };
 
 export default ChatLog;

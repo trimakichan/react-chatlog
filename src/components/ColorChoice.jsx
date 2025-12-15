@@ -10,10 +10,10 @@ const ColorChoice = ({ sender, onUpdateColor }) => {
         return (
           <button
             key={index}
-            className={color}
+            className={`button-size ${color}`}
             onClick={() => onUpdateColor(sender, color)}
           >
-            &#9679;
+            <p className='button-size'>&#9679;</p>
           </button>
         );
       })}
@@ -22,7 +22,7 @@ const ColorChoice = ({ sender, onUpdateColor }) => {
 };
 
 ColorChoice.propTypes = {
-  sender: PropTypes.number.isRequired,
+  sender: PropTypes.string.isRequired,
   onUpdateColor: PropTypes.func.isRequired
 };
 
